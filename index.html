@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css" type="text/css">
+    <style>
+      .map {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
+    <title>OpenLayers example</title>
+  </head>
+  <body>
+    <h2>My Map</h2>
+    <div id="map" class="map"></div>
+    <script type="text/javascript">
+      var map = new ol.Map({
+        target: 'map',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([-120.660153, 35.299475]),
+          zoom: 6
+        })
+      });
+      var centerLongitudeLatitude1 = ol.proj.fromLonLat([-120.663782, 35.287666]);
+        var layer1 = new ol.layer.Vector({
+        source: new ol.source.Vector({
+            projection: 'EPSG:4326',
+            features: [new ol.Feature(new ol.geom.Circle(centerLongitudeLatitude1, 4000))]
+        }),
+        style: [
+            new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                color: 'blue',
+                width: 9
+            }),
+            fill: new ol.style.Fill({
+                color: 'rgba(0, 0, 255, 0.1)'
+            })
+            })
+        ]
+        });
+        map.addLayer(layer1);
+
+        var centerLongitudeLatitude2 = ol.proj.fromLonLat([-121.486816, 38.571857]);
+        var layer2 = new ol.layer.Vector({
+        source: new ol.source.Vector({
+            projection: 'EPSG:4326',
+            features: [new ol.Feature(new ol.geom.Circle(centerLongitudeLatitude2, 4000))]
+        }),
+        style: [
+            new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                color: 'red',
+                width: 3
+            }),
+            fill: new ol.style.Fill({
+                color: 'rgba(255, 0, 0, 0.1)'
+            })
+            })
+        ]
+        });
+        map.addLayer(layer2);
+        
+    </script>
+  </body>
+</html>
