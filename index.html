@@ -66,6 +66,26 @@
         ]
         });
         map.addLayer(layer2);
+      
+        var centerLongitudeLatitude3 = ol.proj.fromLonLat([-122.453265, 37.778722]);
+        var layer3 = new ol.layer.Vector({
+        source: new ol.source.Vector({
+            projection: 'EPSG:4326',
+            features: [new ol.Feature(new ol.geom.Circle(centerLongitudeLatitude3, 4000))]
+        }),
+        style: [
+            new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                color: 'green',
+                width: 3
+            }),
+            fill: new ol.style.Fill({
+                color: 'rgba(255, 0, 0, 0.1)'
+            })
+            })
+        ]
+        });
+        map.addLayer(layer3);
         
     </script>
   </body>
